@@ -2,7 +2,6 @@ package org.example;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 
 import javax.servlet.ServletException;
@@ -16,15 +15,15 @@ import java.io.IOException;
 @WebServlet(name="MainServlet", urlPatterns={"/"})
 public class MainServlet extends HttpServlet {
 
-    final static String randomNumUrl = "http://randnum.herokuapp.com/";
-    final static String randomWordUrl = "http://random-word.herokuapp.com/";
+    final static String RANDOM_NUM_URL = "http://randnum.herokuapp.com/";
+    final static String RANDOM_WORD_URL = "http://random-word.herokuapp.com/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpClient client = new HttpClient();
 
-        GetMethod getRandomNum = new GetMethod(randomNumUrl);
+        GetMethod getRandomNum = new GetMethod(RANDOM_NUM_URL);
 
         String output = "";
 
@@ -34,10 +33,9 @@ public class MainServlet extends HttpServlet {
 
             for(int i = 0; i < numWords; i++) {
 
-                GetMethod getRandomWord = new GetMethod(randomWordUrl);
+                GetMethod getRandomWord = new GetMethod(RANDOM_WORD_URL);
 
                 try {
-
                     client.executeMethod(getRandomWord);
                     output += getRandomWord.getResponseBodyAsString() + " ";
 
